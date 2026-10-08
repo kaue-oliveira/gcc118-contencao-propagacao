@@ -1,0 +1,19 @@
+# Ambiente e arquivos temporários do Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Configuração local e credenciais
+.env
+.env.*
+!.env.example
+
+# Arquivos temporários e do sistema operacional
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db

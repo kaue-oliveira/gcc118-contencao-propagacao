@@ -1,0 +1,234 @@
+{
+  "fonte": "https://snap.stanford.edu/data/wiki-Vote.txt.gz",
+  "obtencao": "2026-10-08",
+  "arquivo": "Wiki-Vote.txt.gz",
+  "bytes_gzip": 290339,
+  "bytes_descompactados": 1095061,
+  "sha256_gzip": "7d3e53626e14b8b09fb3b396bece9d481ad606bd64ceab066349ff57d4ada7fc",
+  "sha256_descompactado": "d2afbedf262126f820c6b3dd9f39a6d68e6f5ea839c0508297032ca77578b28a",
+  "sha256_script": "908f4805f6cf69025ce23bcb822d9c8658fabfc6ab312b2f7d21a604b955430f",
+  "sha256_modulos": {
+    "src/contencao/analise.py": "908f4805f6cf69025ce23bcb822d9c8658fabfc6ab312b2f7d21a604b955430f",
+    "src/contencao/grafos.py": "2ef736251079b2ec33f4dd9bd700c7c509fe1dab83ed6924bdf415570f7a0320"
+  },
+  "python": "3.12.3",
+  "cabecalho": [
+    "# Directed graph (each unordered pair of nodes is saved once): Wiki-Vote.txt",
+    "# Wikipedia voting on promotion to administratorship (till January 2008). Directed edge A->B means user A voted on B becoming Wikipedia administrator.",
+    "# Nodes: 7115 Edges: 103689",
+    "# FromNodeId\tToNodeId"
+  ],
+  "linhas_em_branco": 0,
+  "registros_validos": 103689,
+  "linhas_invalidas": 0,
+  "registros_duplicados_excedentes": 0,
+  "registros_lacos": 0,
+  "arcos_lacos_distintos": 0,
+  "vertices": 7115,
+  "arcos_distintos_brutos": 103689,
+  "arcos_utilizados": 103689,
+  "densidade": 0.0020485375110809584,
+  "pares_reciprocos": 2927,
+  "arcos_reciprocos": 5854,
+  "wcc_quantidade": 24,
+  "wcc_tamanhos": [
+    7066,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "maior_wcc_arcos": 103663,
+  "scc_quantidade": 5816,
+  "maior_scc_vertices": 1300,
+  "maior_scc_arcos": 39456,
+  "scc_distribuicao_tamanhos": {
+    "1300": 1,
+    "1": 5815
+  },
+  "graus_entrada": {
+    "min": 0,
+    "q25": 0.0,
+    "mediana": 0.0,
+    "q75": 13.0,
+    "q95": 76.0,
+    "max": 457,
+    "media": 14.573295853829936,
+    "desvio_populacional": 31.728726586863285,
+    "zeros": 4734
+  },
+  "graus_saida": {
+    "min": 0,
+    "q25": 1.0,
+    "mediana": 2.0,
+    "q75": 9.0,
+    "q95": 75.0,
+    "max": 893,
+    "media": 14.573295853829936,
+    "desvio_populacional": 42.279115598262216,
+    "zeros": 1005
+  },
+  "top5_saida": [
+    [
+      2565,
+      893
+    ],
+    [
+      766,
+      773
+    ],
+    [
+      11,
+      743
+    ],
+    [
+      457,
+      732
+    ],
+    [
+      2688,
+      618
+    ]
+  ],
+  "cenarios_diagnosticos": [
+    {
+      "criterio": "maior_grau_saida",
+      "S": [
+        2565
+      ],
+      "k": 1,
+      "alcancados_sem_intervencao": 2316,
+      "percentual": 32.55094869992973
+    },
+    {
+      "criterio": "maior_grau_saida",
+      "S": [
+        2565,
+        766,
+        11
+      ],
+      "k": 3,
+      "alcancados_sem_intervencao": 2320,
+      "percentual": 32.60716795502459
+    },
+    {
+      "criterio": "maior_grau_saida",
+      "S": [
+        2565,
+        766,
+        11,
+        457,
+        2688
+      ],
+      "k": 5,
+      "alcancados_sem_intervencao": 2325,
+      "percentual": 32.677442023893185
+    },
+    {
+      "criterio": "aleatorio_semente_42",
+      "S": [
+        5931
+      ],
+      "k": 1,
+      "alcancados_sem_intervencao": 1,
+      "percentual": 0.014054813773717497
+    },
+    {
+      "criterio": "aleatorio_semente_42",
+      "S": [
+        5931,
+        991,
+        215
+      ],
+      "k": 3,
+      "alcancados_sem_intervencao": 2317,
+      "percentual": 32.565003513703445
+    },
+    {
+      "criterio": "aleatorio_semente_42",
+      "S": [
+        5931,
+        991,
+        215,
+        6967,
+        2453
+      ],
+      "k": 5,
+      "alcancados_sem_intervencao": 2318,
+      "percentual": 32.57905832747716
+    }
+  ],
+  "recortes": [
+    {
+      "vertices": 100,
+      "arcos": 961,
+      "densidade": 0.09707070707070707,
+      "wcc": 1,
+      "scc": 47,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 77,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "vertices": 300,
+      "arcos": 6962,
+      "densidade": 0.07761426978818284,
+      "wcc": 1,
+      "scc": 100,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 256,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "vertices": 1000,
+      "arcos": 32207,
+      "densidade": 0.03223923923923924,
+      "wcc": 1,
+      "scc": 399,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 867,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    }
+  ],
+  "tempo_auditoria_segundos": 0.3699144580000393
+}

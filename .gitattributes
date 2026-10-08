@@ -1,0 +1,2 @@
+# Normaliza as quebras de linha dos CSVs armazenados no Git.
+*.csv text eol=lf

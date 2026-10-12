@@ -1,2 +1,6 @@
 # Normaliza as quebras de linha dos CSVs armazenados no Git.
 *.csv text eol=lf
+
+# Documentos e figuras não devem receber normalização ou diff de texto.
+*.pdf binary
+*.png binary

@@ -2,6 +2,8 @@
 
 Trabalho prático de **GCC118 — Programação Matemática**, da Universidade Federal de Lavras (UFLA), semestre **2026/2**. Aluno: **Kauê de Oliveira Silva**.
 
+**Repositório:** [github.com/kaue-oliveira/gcc118-contencao-propagacao](https://github.com/kaue-oliveira/gcc118-contencao-propagacao).
+
 ## Objetivo
 
 Dado um grafo dirigido `G = (V, A)`, um conjunto de vértices inicialmente infectados ou ativados `S` e um orçamento `c`, escolher exatamente `c` vértices fora de `S` para remover, minimizando o número de vértices alcançáveis a partir de `S` no grafo restante.
@@ -29,13 +31,15 @@ A etapa 1 contém a base original Wiki-Vote, a rotina de análise e os resultado
 ├── README.md
 ├── .gitignore
 ├── .gitattributes
+├── requirements-relatorio.txt          # Dependências opcionais para figura e PDF
 ├── src/
 │   └── contencao/
 │       ├── __init__.py
 │       ├── grafos.py                   # Alcançabilidade e componentes
 │       └── analise.py                  # Auditoria, cenários e recortes da etapa 1
 ├── scripts/
-│   └── analisar.py                     # Entrada para executar a análise
+│   ├── analisar.py                     # Entrada para executar a análise
+│   └── gerar_relatorio.py              # Regeneração da figura e do PDF
 ├── dados/
 │   ├── brutos/
 │   │   └── Wiki-Vote.txt.gz             # Arquivo original do SNAP
@@ -62,7 +66,9 @@ A etapa 1 contém a base original Wiki-Vote, a rotina de análise e os resultado
     ├── figuras/
     │   └── distribuicao_graus.png
     └── relatorios/
-        └── etapa-1-wiki-vote.pdf
+        ├── etapa-1-wiki-vote.pdf
+        ├── etapa-1-wiki-vote.md         # Fonte editável do relatório
+        └── revisao-etapa-1.md           # Parecer de conformidade e verificações
 ```
 
 O código reutilizável fica em `src/contencao/`; `scripts/` contém apenas entradas de execução. Os dados brutos ficam separados dos arquivos derivados e das instâncias destinadas aos próximos experimentos. Resultados são agrupados por etapa, e documentos e figuras finais ficam em `docs/`.
@@ -84,6 +90,19 @@ A execução imprime o resumo JSON e **sobrescreve** as tabelas em `resultados/e
 Resultados esperados: **7.115 vértices, 103.689 arcos, 24 componentes fracas e 5.816 componentes fortes**, sem registros inválidos, duplicatas ou laços. Todos os CSVs usam cabeçalho; `linhas_invalidas.csv` contém somente o cabeçalho nessa base.
 
 O JSON registra os checksums dos dados e dos módulos da análise, a versão do Python, as origens selecionadas e o tempo de execução. Ao reproduzir a análise, os metadados de código, ambiente e tempo podem mudar; confira os IDs das origens aleatórias ao comparar versões de Python.
+
+### Regenerar o relatório e a figura
+
+O PDF usa a fonte editável `docs/relatorios/etapa-1-wiki-vote.md`. O tempo de execução e a versão do Python são preenchidos com os valores do JSON versionado; a figura é recalculada a partir de `resultados/etapa-1/graus.csv`.
+
+Em um ambiente virtual Python, instale as dependências opcionais e execute:
+
+```bash
+python3 -m pip install -r requirements-relatorio.txt
+python3 scripts/gerar_relatorio.py
+```
+
+Esse comando sobrescreve apenas a figura e o PDF. As dependências de relatório não são necessárias para executar `scripts/analisar.py`. O texto e as tabelas da fonte Markdown documentam a Wiki-Vote desta etapa; se mudar a base ou os cenários, revise também essa fonte antes de gerar o relatório.
 
 ## Dados e convenções das instâncias
 
@@ -124,6 +143,8 @@ Novas bases devem ficar em `dados/brutos/`, com seus derivados e instâncias em 
 - [Enunciado](docs/enunciado.pdf): requisitos e etapas da disciplina.
 - [Proposta de tema](docs/proposta-tema.pdf): problema, artigo-base e metodologia inicial.
 - [Relatório da etapa 1](docs/relatorios/etapa-1-wiki-vote.pdf): coleta, auditoria e estudo da Wiki-Vote.
+- [Fonte editável do relatório](docs/relatorios/etapa-1-wiki-vote.md).
+- [Revisão da etapa 1](docs/relatorios/revisao-etapa-1.md): correspondência com o enunciado, conferência independente e correções.
 - [Figura de distribuição dos graus](docs/figuras/distribuicao_graus.png): figura pronta da etapa 1.
 
 Datas previstas no enunciado, para 2026:

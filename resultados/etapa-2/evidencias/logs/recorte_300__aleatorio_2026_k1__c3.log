@@ -1,0 +1,54 @@
+
+Gurobi 12.0.3 (linux64) logging started Tue Nov  3 12:46:11 2026
+
+Set parameter LogFile to value "recorte_300__aleatorio_2026_k1__c3.log"
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 24.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13620H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 1 threads
+
+Non-default parameters:
+TimeLimit  30
+MIPGap  0
+MIPGapAbs  0
+LogToConsole  0
+Seed  42
+Threads  1
+
+[Identificação da licença omitida.]
+Optimize a model with 7263 rows, 900 columns and 22086 nonzeros
+Model fingerprint: 0x6a940d03
+Variable types: 600 continuous, 300 integer (300 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+00]
+Found heuristic solution: objective 254.0000000
+Presolve removed 3447 rows and 257 columns
+Presolve time: 0.02s
+Presolved: 3816 rows, 643 columns, 10518 nonzeros
+Variable types: 394 continuous, 249 integer (248 binary)
+
+Root relaxation: objective 2.402558e+02, 564 iterations, 0.01 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  240.25581    0   46  254.00000  240.25581  5.41%     -    0s
+H    0     0                     252.0000000  240.25581  4.66%     -    0s
+H    0     0                     251.0000000  240.25581  4.28%     -    0s
+*    0     0               0     247.0000000  247.00000  0.00%     -    0s
+
+Cutting planes:
+  Gomory: 6
+  MIR: 1
+  RLT: 38
+
+Explored 1 nodes (847 simplex iterations) in 0.08 seconds (0.16 work units)
+Thread count was 1 (of 16 available processors)
+
+Solution count 4: 247 251 252 254 
+
+Optimal solution found (tolerance 0.00e+00)
+Best objective 2.470000000000e+02, best bound 2.470000000000e+02, gap 0.0000%

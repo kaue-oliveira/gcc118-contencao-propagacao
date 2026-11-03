@@ -1,0 +1,182 @@
+{
+  "descricao": "Etapa 2: núcleo previsto e análises complementares com comparações pareadas",
+  "solver": {
+    "limite_tempo_s": 30,
+    "gap_alvo": 0.0,
+    "threads": 1,
+    "semente": 42
+  },
+  "grafos": {
+    "recorte_100": {
+      "vertices": "dados/instancias/wiki-vote/recorte_100_vertices.csv",
+      "arcos": "dados/instancias/wiki-vote/recorte_100_arcos.csv"
+    },
+    "recorte_300": {
+      "vertices": "dados/instancias/wiki-vote/recorte_300_vertices.csv",
+      "arcos": "dados/instancias/wiki-vote/recorte_300_arcos.csv"
+    },
+    "recorte_1000": {
+      "vertices": "dados/instancias/wiki-vote/recorte_1000_vertices.csv",
+      "arcos": "dados/instancias/wiki-vote/recorte_1000_arcos.csv"
+    },
+    "completa": {
+      "vertices": "resultados/etapa-1/graus.csv",
+      "arcos": "dados/processados/wiki-vote/arestas_utilizadas.csv",
+      "vertices_coluna_id": true
+    }
+  },
+  "grupos": [
+    {
+      "nome": "escala",
+      "grafos": [
+        "recorte_100",
+        "recorte_300",
+        "recorte_1000",
+        "completa"
+      ],
+      "perfis": [
+        {
+          "criterio": "fixo",
+          "origens": [
+            2565
+          ]
+        }
+      ],
+      "orcamentos": [
+        0,
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "nome": "sensibilidade_origens",
+      "grafos": [
+        "recorte_300"
+      ],
+      "perfis": [
+        {
+          "criterio": "maior_saida",
+          "k": 3
+        },
+        {
+          "criterio": "maior_saida",
+          "k": 5
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 1,
+          "semente": 42
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 42
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 5,
+          "semente": 42
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 1,
+          "semente": 123
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 123
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 5,
+          "semente": 123
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 1,
+          "semente": 2026
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 2026
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 5,
+          "semente": 2026
+        }
+      ],
+      "orcamentos": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "nome": "origens_rede_completa",
+      "grafos": [
+        "completa"
+      ],
+      "perfis": [
+        {
+          "criterio": "maior_saida",
+          "k": 3
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 42
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 123
+        },
+        {
+          "criterio": "aleatorio",
+          "k": 3,
+          "semente": 2026
+        }
+      ],
+      "orcamentos": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "nome": "controle_sem_saida",
+      "grafos": [
+        "completa"
+      ],
+      "perfis": [
+        {
+          "criterio": "fixo",
+          "origens": [
+            5931
+          ]
+        }
+      ],
+      "orcamentos": [
+        0,
+        10
+      ]
+    }
+  ],
+  "metodologia": {
+    "nucleo": "12 cenários previstos na etapa 1: recortes 100/300/1000, S={2565}, c=1/3/5/10.",
+    "escala": "Acrescentar c=0 em cada tamanho e resolver a rede completa nos mesmos quatro orçamentos: controle e teste de aplicação real.",
+    "sensibilidade_origens": "Fixar n=300, cruzar k=1/3/5, critério maior saída ou aleatório e c=1/3/5/10. Maior saída com k=1 já está no núcleo S={2565}.",
+    "semente_origens": "42, 123 e 2026 identificam três realizações fixadas antes do piloto; análise exploratória, sem inferência populacional. Seleções aninhadas por k.",
+    "rede_completa": "Confirmar sensibilidade fora dos recortes, fixando k=3 e cruzando os mesmos quatro orçamentos com maior saída e três realizações aleatórias.",
+    "controle": "S={5931}, sem arcos de saída, com c=0 e c=10, extremos da grade original: o ótimo deve ser 1, respeitando o orçamento.",
+    "protocolo": "TimeLimit=30s é limite de recursos, não critério de otimalidade. MIPGap=0 e MIPGapAbs=0 buscam prova; Threads=1 e Seed=42 fixos. Uma execução por caso, sem conclusões estatísticas de desempenho.",
+    "piloto": "Lotes anteriores preservados, compactados, em resultados/arquivo/etapa-2/. A grade principal mantém comparações pareadas nos quatro orçamentos; casos com orçamento alto do piloto não integram a análise principal. A execução final é refeita integralmente após a vistoria."
+  }
+}

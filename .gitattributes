@@ -4,3 +4,7 @@
 # Documentos e figuras não devem receber normalização ou diff de texto.
 *.pdf binary
 *.png binary
+*.gz binary
+
+# Logs preservam a formatação nativa do solver, inclusive espaços finais.
+resultados/etapa-2/evidencias/logs/*.log -whitespace

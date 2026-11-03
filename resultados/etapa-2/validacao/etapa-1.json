@@ -1,0 +1,72 @@
+{
+  "confere": true,
+  "vertices": 7115,
+  "arcos": 103689,
+  "sha256_base_bruta": "7d3e53626e14b8b09fb3b396bece9d481ad606bd64ceab066349ff57d4ada7fc",
+  "sha256_arquivos_conferidos": {
+    "resultados/etapa-1/componentes.csv": "90c4ab2e2b579c010220eba5840fadc160f9670ec46446d0e5b225038c37605e",
+    "resultados/etapa-1/graus.csv": "d8cc5f94fb48cc59a1a24ce34d2ebf673d1e78eca3cab6f483d1792e1f3c89ef",
+    "resultados/etapa-1/linhas_invalidas.csv": "246d3327822c7b71dc6ea9eec252abf855870ca4857d8cba4f7c796a0882ea58",
+    "dados/processados/wiki-vote/arestas_utilizadas.csv": "f9c7fd76591ba5b14c098ac45765a6640c6fbcd553c16dbaac14514a4ffb1d14",
+    "dados/instancias/wiki-vote/recorte_1000_arcos.csv": "0997ca27317749c871e7316c2118418d9d432046665d02278c663bfcdf31e0c2",
+    "dados/instancias/wiki-vote/recorte_1000_vertices.csv": "7629c50b384eacf7953b1a5dbb56d32f9f1d7bea61414273be52340e09bd132e",
+    "dados/instancias/wiki-vote/recorte_100_arcos.csv": "d722814ea976fd240e53793bd8d0ebcd9a915650bea6fdc4f95dc7e81a833577",
+    "dados/instancias/wiki-vote/recorte_100_vertices.csv": "54f566441d73d20ee75807b8845d1d453e5a22bcfb776991d5b4d71387e29f6e",
+    "dados/instancias/wiki-vote/recorte_300_arcos.csv": "ec8534585381013d10625988362aee570a2a27b6ae2e162aec1c35eb557f786b",
+    "dados/instancias/wiki-vote/recorte_300_vertices.csv": "f09586473fee7d7f23db932999d72027f4801f292120df6e48da4143766a7e48"
+  },
+  "recortes": [
+    {
+      "vertices": 100,
+      "arcos": 961,
+      "densidade": 0.09707070707070707,
+      "wcc": 1,
+      "scc": 47,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 77,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "vertices": 300,
+      "arcos": 6962,
+      "densidade": 0.07761426978818284,
+      "wcc": 1,
+      "scc": 100,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 256,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "vertices": 1000,
+      "arcos": 32207,
+      "densidade": 0.03223923923923924,
+      "wcc": 1,
+      "scc": 399,
+      "S": [
+        2565
+      ],
+      "alcancados_sem_intervencao": 867,
+      "orcamentos_planejados": [
+        1,
+        3,
+        5,
+        10
+      ]
+    }
+  ],
+  "criterio": "Reprodução integral em pasta temporária; comparação de todas as tabelas e dos campos analíticos da auditoria."
+}

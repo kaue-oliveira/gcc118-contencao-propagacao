@@ -1,0 +1,26 @@
+test_log_remove_identificacao_sem_alterar_evidencia (test_etapa2.TestArtefatos.test_log_remove_identificacao_sem_alterar_evidencia) ... ok
+test_tabelas_separam_escopos_e_rejeitam_adulteracao (test_etapa2.TestArtefatos.test_tabelas_separam_escopos_e_rejeitam_adulteracao) ... ok
+test_auditoria_rejeita_parametros_e_metricas_adulterados (test_etapa2.TestExato.test_auditoria_rejeita_parametros_e_metricas_adulterados) ... ok
+test_dominios_e_fixacoes_do_modelo (test_etapa2.TestExato.test_dominios_e_fixacoes_do_modelo) ... ok
+test_gargalo_e_caminhos_alternativos (test_etapa2.TestExato.test_gargalo_e_caminhos_alternativos) ... ok
+test_grafos_aleatorios_oito_vertices (test_etapa2.TestExato.test_grafos_aleatorios_oito_vertices) ... ok
+test_limites_invalidos (test_etapa2.TestExato.test_limites_invalidos) ... ok
+test_retomar_lote_concluido_preserva_arquivos (test_etapa2.TestExato.test_retomar_lote_concluido_preserva_arquivos) ... ok
+test_somente_origens_e_grafo_sem_arcos (test_etapa2.TestExato.test_somente_origens_e_grafo_sem_arcos) ... ok
+test_tempo_zero_sem_incumbente (test_etapa2.TestExato.test_tempo_zero_sem_incumbente) ... ok
+test_todos_grafos_dirigidos_tres_vertices (test_etapa2.TestExato.test_todos_grafos_dirigidos_tres_vertices) ... ok
+
+Comparações solver x enumeração completa: 1196
+test_configuracao_e_recortes (test_etapa2.TestInstancias.test_configuracao_e_recortes) ... ok
+test_csv_preserva_isolados (test_etapa2.TestInstancias.test_csv_preserva_isolados) ... ok
+test_csv_rejeita_cabecalho_e_linha (test_etapa2.TestInstancias.test_csv_rejeita_cabecalho_e_linha) ... ok
+test_direcao_e_corte_de_caminhos (test_etapa2.TestInstancias.test_direcao_e_corte_de_caminhos) ... ok
+test_grafo_rejeita_inconsistencias (test_etapa2.TestInstancias.test_grafo_rejeita_inconsistencias) ... ok
+test_origens_e_orcamento (test_etapa2.TestInstancias.test_origens_e_orcamento) ... ok
+test_remocao_nao_aceita_booleano_como_id (test_etapa2.TestInstancias.test_remocao_nao_aceita_booleano_como_id) ... ok
+test_remocoes_invalidas (test_etapa2.TestInstancias.test_remocoes_invalidas) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.556s
+
+OK

@@ -1,0 +1,44 @@
+
+Gurobi 12.0.3 (linux64) logging started Tue Nov  3 12:46:15 2026
+
+Set parameter LogFile to value "completa__saida_k3__c1.log"
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 24.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13620H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 1 threads
+
+Non-default parameters:
+TimeLimit  30
+MIPGap  0
+MIPGapAbs  0
+LogToConsole  0
+Seed  42
+Threads  1
+
+[Identificação da licença omitida.]
+Optimize a model with 110805 rows, 21345 columns and 339527 nonzeros
+Model fingerprint: 0x8dbdf487
+Variable types: 14230 continuous, 7115 integer (7115 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 2383.0000000
+Presolve removed 101671 rows and 15952 columns
+Presolve time: 0.02s
+Presolved: 9134 rows, 5393 columns, 22490 nonzeros
+Found heuristic solution: objective 2320.0000000
+Variable types: 652 continuous, 4741 integer (4741 binary)
+Performing another presolve...
+Presolve removed 9134 rows and 5393 columns
+Presolve time: 0.16s
+Found heuristic solution: objective 2316.0000000
+
+Explored 1 nodes (0 simplex iterations) in 0.20 seconds (0.30 work units)
+Thread count was 1 (of 16 available processors)
+
+Solution count 3: 2316 2320 2383 
+
+Optimal solution found (tolerance 0.00e+00)
+Best objective 2.316000000000e+03, best bound 2.316000000000e+03, gap 0.0000%

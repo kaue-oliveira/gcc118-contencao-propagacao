@@ -1,0 +1,58 @@
+
+Gurobi 12.0.3 (linux64) logging started Tue Nov  3 12:45:54 2026
+
+Set parameter LogFile to value "recorte_300__aleatorio_42_k1__c3.log"
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 24.04.5 LTS")
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13620H, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 16 logical processors, using up to 1 threads
+
+Non-default parameters:
+TimeLimit  30
+MIPGap  0
+MIPGapAbs  0
+LogToConsole  0
+Seed  42
+Threads  1
+
+[Identificação da licença omitida.]
+Optimize a model with 7263 rows, 900 columns and 22086 nonzeros
+Model fingerprint: 0x7d0439bc
+Variable types: 600 continuous, 300 integer (300 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+00]
+Found heuristic solution: objective 253.0000000
+Presolve removed 1801 rows and 145 columns
+Presolve time: 0.02s
+Presolved: 5462 rows, 755 columns, 16516 nonzeros
+Variable types: 500 continuous, 255 integer (255 binary)
+
+Root relaxation: objective 6.550000e+01, 521 iterations, 0.01 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   65.50000    0    4  253.00000   65.50000  74.1%     -    0s
+H    0     0                     252.0000000   65.50000  74.0%     -    0s
+     0     0  117.00000    0    6  252.00000  117.00000  53.6%     -    0s
+H    0     0                     246.0000000  119.50000  51.4%     -    0s
+     0     0  129.00000    0    6  246.00000  129.00000  47.6%     -    0s
+     0     0  129.83178    0    8  246.00000  129.83178  47.2%     -    0s
+     0     0  130.57377    0    7  246.00000  130.57377  46.9%     -    0s
+     0     0  163.91042    0   10  246.00000  163.91042  33.4%     -    0s
+     0     2  164.01455    0   10  246.00000  164.01455  33.3%     -    0s
+
+Cutting planes:
+  Gomory: 1
+  RLT: 2
+
+Explored 21 nodes (2916 simplex iterations) in 0.34 seconds (0.59 work units)
+Thread count was 1 (of 16 available processors)
+
+Solution count 3: 246 252 253 
+
+Optimal solution found (tolerance 0.00e+00)
+Best objective 2.460000000000e+02, best bound 2.460000000000e+02, gap 0.0000%

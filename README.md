@@ -1,163 +1,104 @@
 # Contenção de propagação em redes
 
-Trabalho prático de **GCC118 — Programação Matemática**, da Universidade Federal de Lavras (UFLA), semestre **2026/2**. Aluno: **Kauê de Oliveira Silva**.
+Trabalho de **GCC118 - Programação Matemática**, UFLA, semestre **2026/2**. Aluno: **Kauê de Oliveira Silva**.
 
-**Repositório:** [github.com/kaue-oliveira/gcc118-contencao-propagacao](https://github.com/kaue-oliveira/gcc118-contencao-propagacao).
+Dado um grafo dirigido G=(V,A), um conjunto inicial não vazio S e um orçamento inteiro c, escolher **exatamente c vértices fora de S** para remover e minimizar o número de vértices alcançáveis a partir de S. As origens são protegidas e entram na contagem; exige-se 0 ≤ c ≤ |V|-|S|.
 
-## Objetivo
+A pergunta do trabalho é: **quando estratégias baseadas em centralidade se aproximam do ótimo e quando a otimização encontra remoções melhores para conter a propagação?**
 
-Dado um grafo dirigido `G = (V, A)`, um conjunto de vértices inicialmente infectados ou ativados `S` e um orçamento `c`, escolher exatamente `c` vértices fora de `S` para remover, minimizando o número de vértices alcançáveis a partir de `S` no grafo restante.
+## Entregas
 
-Os vértices de `S` são protegidos contra remoção e entram na contagem dos alcançados. O orçamento deve respeitar `0 ≤ c ≤ |V| − |S|`.
-
-A pergunta experimental é: **quando estratégias baseadas em centralidade se aproximam da solução ótima e quando a otimização encontra escolhas melhores para conter a propagação?**
-
-## O que já está disponível
-
-A etapa 1 contém a base original Wiki-Vote, a rotina de análise e os resultados necessários para reproduzir a caracterização da rede:
-
-- Auditoria dos registros, duplicatas, laços e pares recíprocos.
-- Graus de entrada e saída, componentes fracas e componentes fortes.
-- Seis cenários de alcançabilidade sem remoção, com origens por maior grau de saída e seleção aleatória de semente 42.
-- Recortes induzidos e crescentes de 100, 300 e 1.000 vértices.
-- Relatório em PDF e figura de distribuição dos graus já produzidos.
-
-**O modelo exato, as heurísticas de contenção e a metaheurística ainda não estão implementados.** A análise atual mede alcançabilidade sem intervenção (`c = 0`).
-
-## Estrutura atual
-
-```text
-.
-├── README.md
-├── .gitignore
-├── .gitattributes
-├── requirements-relatorio.txt          # Dependências opcionais para figura e PDF
-├── src/
-│   └── contencao/
-│       ├── __init__.py
-│       ├── grafos.py                   # Alcançabilidade e componentes
-│       └── analise.py                  # Auditoria, cenários e recortes da etapa 1
-├── scripts/
-│   ├── analisar.py                     # Entrada para executar a análise
-│   └── gerar_relatorio.py              # Regeneração da figura e do PDF
-├── dados/
-│   ├── brutos/
-│   │   └── Wiki-Vote.txt.gz             # Arquivo original do SNAP
-│   ├── processados/
-│   │   └── wiki-vote/
-│   │       └── arestas_utilizadas.csv   # Arcos dirigidos após a auditoria
-│   └── instancias/
-│       └── wiki-vote/
-│           ├── recorte_100_vertices.csv
-│           ├── recorte_100_arcos.csv
-│           ├── recorte_300_vertices.csv
-│           ├── recorte_300_arcos.csv
-│           ├── recorte_1000_vertices.csv
-│           └── recorte_1000_arcos.csv
-├── resultados/
-│   └── etapa-1/
-│       ├── auditoria.json
-│       ├── graus.csv
-│       ├── componentes.csv
-│       └── linhas_invalidas.csv
-└── docs/
-    ├── enunciado.pdf
-    ├── proposta-tema.pdf
-    ├── figuras/
-    │   └── distribuicao_graus.png
-    └── relatorios/
-        ├── etapa-1-wiki-vote.pdf
-        ├── etapa-1-wiki-vote.md         # Fonte editável do relatório
-        └── revisao-etapa-1.md           # Parecer de conformidade e verificações
-```
-
-O código reutilizável fica em `src/contencao/`; `scripts/` contém apenas entradas de execução. Os dados brutos ficam separados dos arquivos derivados e das instâncias destinadas aos próximos experimentos. Resultados são agrupados por etapa, e documentos e figuras finais ficam em `docs/`.
-
-## Executar a etapa 1
-
-Requer **Python 3.10 ou superior**. A análise usa somente a biblioteca padrão; não é necessário instalar pacotes ou solver.
-
-Na raiz do repositório:
-
-```bash
-python3 scripts/analisar.py
-```
-
-No Windows, use `py -3 scripts/analisar.py` se `python3` não estiver disponível. Os caminhos são resolvidos a partir do código, permitindo executar o script por caminho absoluto a partir de outro diretório.
-
-A execução imprime o resumo JSON e **sobrescreve** as tabelas em `resultados/etapa-1/`, a lista de arcos em `dados/processados/wiki-vote/` e os recortes em `dados/instancias/wiki-vote/`. Ela preserva a base comprimida, os PDFs e a figura existente.
-
-Resultados esperados: **7.115 vértices, 103.689 arcos, 24 componentes fracas e 5.816 componentes fortes**, sem registros inválidos, duplicatas ou laços. Todos os CSVs usam cabeçalho; `linhas_invalidas.csv` contém somente o cabeçalho nessa base.
-
-O JSON registra os checksums dos dados e dos módulos da análise, a versão do Python, as origens selecionadas e o tempo de execução. Ao reproduzir a análise, os metadados de código, ambiente e tempo podem mudar; confira os IDs das origens aleatórias ao comparar versões de Python.
-
-### Regenerar o relatório e a figura
-
-O PDF usa a fonte editável `docs/relatorios/etapa-1-wiki-vote.md`. O tempo de execução e a versão do Python são preenchidos com os valores do JSON versionado; a figura é recalculada a partir de `resultados/etapa-1/graus.csv`.
-
-Em um ambiente virtual Python, instale as dependências opcionais e execute:
-
-```bash
-python3 -m pip install -r requirements-relatorio.txt
-python3 scripts/gerar_relatorio.py
-```
-
-Esse comando sobrescreve apenas a figura e o PDF. As dependências de relatório não são necessárias para executar `scripts/analisar.py`. O texto e as tabelas da fonte Markdown documentam a Wiki-Vote desta etapa; se mudar a base ou os cenários, revise também essa fonte antes de gerar o relatório.
-
-## Dados e convenções das instâncias
-
-A [Wiki-Vote do SNAP](https://snap.stanford.edu/data/wiki-Vote.html) registra votos entre usuários da Wikipédia. A propagação sobre essa topologia é uma hipótese experimental: os dados não registram contágio observado. Mantêm-se os IDs originais e a orientação dos arcos.
-
-O arquivo [Wiki-Vote.txt.gz](https://snap.stanford.edu/data/wiki-Vote.txt.gz), obtido em 08/10/2026, está incluído no repositório. SHA-256 do arquivo comprimido:
-
-```text
-7d3e53626e14b8b09fb3b396bece9d481ad606bd64ceab066349ff57d4ada7fc
-```
-
-Cada recorte é descrito por um CSV de vértices (coluna `id`) e um CSV de arcos (colunas `origem` e `destino`). O arquivo de vértices deve ser lido mesmo quando um vértice não aparece nos arcos, para preservar vértices isolados do recorte.
-
-A seleção dos IDs usa BFS sem orientação a partir do vértice 2565, visitando vizinhos em ordem crescente. O grafo induzido mantém os sentidos originais. Para os testes planejados, `S = {2565}` e `c ∈ {1, 3, 5, 10}`; essas informações também estão em `resultados/etapa-1/auditoria.json`. Os recortes não são amostras representativas da rede inteira.
-
-## Expansão nas próximas etapas
-
-Os caminhos abaixo são **planejados** e devem ser criados conforme a implementação avançar:
-
-| Caminho | Responsabilidade |
+| Etapa | Conteúdo e acesso |
 | --- | --- |
-| `src/contencao/instancias.py` | Leitura e validação dos grafos, origens `S` e orçamento `c`. |
-| `src/contencao/propagacao.py` | Avaliação da alcançabilidade após remoções, reutilizando os algoritmos de `grafos.py`. |
-| `src/contencao/modelos/` | Formulação exata de programação inteira/mista e integração com Gurobi. |
-| `src/contencao/heuristicas/` | Seleção por grau, betweenness, aleatória, gulosa e busca local. |
-| `src/contencao/metaheuristicas/` | Busca local iterada (ILS), prevista na metodologia. |
-| `scripts/experimentar.py` | Execução das comparações entre métodos nas mesmas instâncias. |
-| `experimentos/` | Configurações dos experimentos: instância, origens, orçamento, método, semente e limites de execução. |
-| `resultados/etapa-2/`, `resultados/etapa-3/`, `resultados/etapa-4/` | Saídas da modelagem, heurísticas e análise experimental, respectivamente. |
-| `tests/` | Validação dos algoritmos, das restrições de remoção e da concordância entre avaliação e modelo exato em grafos pequenos. |
+| 1 - Dados | [Relatório](docs/relatorios/etapa-1-wiki-vote.pdf), [análise editável](docs/relatorios/etapa-1-wiki-vote.md) e [revisão](docs/relatorios/revisao-etapa-1.md). |
+| 2 - Modelo exato | [Relatório](docs/relatorios/etapa-2-modelo-exato.pdf), [versão Markdown](docs/relatorios/etapa-2-modelo-exato.md), [desenho experimental](docs/relatorios/desenho-experimental-etapa-2.md) e [vistoria](docs/relatorios/revisao-etapa-2.md). |
+| Resultados da etapa 2 | [Índice dos arquivos](resultados/etapa-2/README.md), [12 casos do núcleo](resultados/etapa-2/tabelas/nucleo.csv), [complementos](resultados/etapa-2/tabelas/complementar.csv) e [auditoria](resultados/etapa-2/validacao/auditoria.json). |
 
-A sequência prevista é validar as instâncias e a avaliação de remoções, implementar o modelo exato nos recortes menores e desenvolver as heurísticas e a ILS. A comparação deve registrar vértices removidos, propagação final, tempo de execução, status e gap do solver quando aplicável. As configurações e sementes devem acompanhar os resultados para permitir reprodução.
+O modelo exato está implementado e validado. As heurísticas, a busca local e a metaheurística serão desenvolvidas na etapa 3.
 
-Novas bases devem ficar em `dados/brutos/`, com seus derivados e instâncias em subpastas próprias. A rotina `analise.py` atual é específica da Wiki-Vote; ela não deve ser tratada como analisador genérico de outras redes. Dependências adicionais e instruções de instalação serão registradas quando os métodos que precisarem delas forem implementados.
+## Organização
 
-## Documentos e cronograma
+~~~text
+dados/
+  brutos/                    Base original preservada
+  processados/wiki-vote/     Arcos auditados da rede completa
+  instancias/wiki-vote/      CSVs de vértices e arcos dos recortes
+src/contencao/               Grafos, instâncias, propagação, modelo e auditoria
+scripts/                    Entradas para executar, conferir e relatar
+experimentos/etapa-2.json    Cenários e parâmetros do solver
+requirements/               Dependências do solver
+tests/                      Testes e oráculo por enumeração
+resultados/
+  etapa-1/                  Auditoria e tabelas da coleta
+  etapa-2/                  Entrega atual: métricas, soluções e evidências
+  arquivo/etapa-2/           Lotes anteriores compactados, fora da análise principal
+  locais/                   Reexecuções particulares, ignoradas pelo Git
+docs/
+  enunciado.pdf
+  proposta-tema.pdf
+  figuras/
+  relatorios/
+~~~
 
-- [Enunciado](docs/enunciado.pdf): requisitos e etapas da disciplina.
-- [Proposta de tema](docs/proposta-tema.pdf): problema, artigo-base e metodologia inicial.
-- [Relatório da etapa 1](docs/relatorios/etapa-1-wiki-vote.pdf): coleta, auditoria e estudo da Wiki-Vote.
-- [Fonte editável do relatório](docs/relatorios/etapa-1-wiki-vote.md).
-- [Revisão da etapa 1](docs/relatorios/revisao-etapa-1.md): correspondência com o enunciado, conferência independente e correções.
-- [Figura de distribuição dos graus](docs/figuras/distribuicao_graus.png): figura pronta da etapa 1.
+O [índice de resultados](resultados/etapa-2/README.md) explica a função de cada arquivo e os campos necessários às próximas etapas. Os arquivos históricos não se misturam com a entrega atual.
 
-Datas previstas no enunciado, para 2026:
+## Reproduzir a etapa 1
 
-| Etapa | Entrega | Data prevista |
-| --- | --- | --- |
-| 0 | Proposta e escolha do problema | 28/08 |
-| 1 | Coleta e estudo dos dados | 09/10 |
-| 2 | Modelagem matemática e testes com solver | 30/10 |
-| 3 | Métodos heurísticos e comparação com o exato | 17/11 |
-| 4 | Análise experimental e relatório consolidado | 04/12 |
-| 5 | Apresentação final | 10/12 e 11/12 |
+Requer Python 3.10 ou superior e usa somente a biblioteca padrão:
+
+~~~bash
+python3 scripts/analisar.py
+~~~
+
+O comando sobrescreve os derivados da etapa 1 e os recortes, preservando a base bruta. São esperados 7.115 vértices, 103.689 arcos, 24 componentes fracas e 5.816 fortes.
+
+A vistoria da etapa 2 também reproduz os dados da etapa 1 em diretório temporário, sem sobrescrever os arquivos versionados.
+
+## Reproduzir a etapa 2
+
+O solver requer Python 3.10 ou superior e **licença válida do Gurobi**. A execução entregue utiliza Python 3.12.3 e Gurobi 12.0.3.
+
+Na raiz do projeto:
+
+~~~bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements/solver.txt
+.venv/bin/python scripts/experimentar.py --saida resultados/locais/reexecucao
+.venv/bin/python scripts/verificar_etapa2.py --saida resultados/locais/reexecucao
+~~~
+
+Configure a licença pelo mecanismo normal do Gurobi ou acrescente o argumento --licenca /caminho/para/gurobi.lic aos comandos experimentar.py e verificar_etapa2.py. A licença acadêmica existente foi usada na entrega; nenhuma credencial integra o repositório. Licenças com autenticação externa precisam acessar o serviço de licenças. A licença gratuita de tamanho limitado não cobre a grade completa.
+
+No Windows, substitua .venv/bin/python por .venv\Scripts\python.exe. Os caminhos padrão são resolvidos a partir do projeto. Sem --saida, os comandos usam resultados/etapa-2/.
+
+O executor recusa sobrescrever uma execução existente. --retomar continua um lote com configuração, código, dados e versões idênticos; se já estiver concluído, preserva os arquivos. --filtro seleciona IDs de cenários para pilotos em outra pasta. A auditoria de entrega exige a grade completa.
+
+## Modelo e experimentos
+
+A formulação compacta tem **3n variáveis** (n binárias e 2n contínuas) e **m+n+1 restrições** antes do presolve. As fixações das origens são limites de variáveis. A formulação e a justificativa de exatidão estão no relatório.
+
+O núcleo preserva os **12 casos planejados na etapa 1**: recortes de 100, 300 e 1.000 vértices, S={2565} e c=1/3/5/10. Os 70 complementos cruzam origens e orçamentos no mesmo grafo, verificam a rede completa e incluem controles. A seleção é justificada no desenho experimental; o total não é um tamanho de amostra estatístico.
+
+O protocolo usa TimeLimit=30 s, MIPGap=MIPGapAbs=0, uma thread e semente do solver 42. Cada cenário tem uma execução; os tempos não são médias. TIME_LIMIT preserva solução, limite inferior e gap, sem afirmar otimalidade.
+
+O verificador compara as tabelas com o JSON, confronta métricas com os logs, reavalia remoções por BFS, reabre os quatro LPs compactados e compara seus coeficientes e limites com o modelo. Também reproduz a etapa 1 e executa a suíte de testes, incluindo 1.196 comparações com enumeração completa.
+
+## Dados e convenções
+
+A [Wiki-Vote do SNAP](https://snap.stanford.edu/data/wiki-Vote.html) registra votos entre usuários da Wikipédia. Mantêm-se IDs e sentidos originais; a propagação é uma hipótese sobre a topologia, não um contágio observado.
+
+A base comprimida fica em dados/brutos/Wiki-Vote.txt.gz. Sua origem, checksums e auditoria estão em resultados/etapa-1/auditoria.json. Os recortes são induzidos sobre IDs selecionados por BFS sem orientação, a partir de 2565, visitando vizinhos em ordem crescente. Não são amostras representativas da rede inteira.
+
+Cada recorte tem um CSV de vértices, coluna id, e outro de arcos, colunas origem e destino. Ambos são necessários para preservar isolados. A rede completa usa os IDs da tabela de graus e os arcos auditados. A configuração de cada execução registra os IDs efetivos de S e os hashes dos dados.
+
+## Próximas etapas
+
+Na etapa 3, as heurísticas devem usar os mesmos grafos, origens e orçamentos registrados no manifesto, além do avaliador de propagação existente. O campo otimo_comprovado distingue referências ótimas de soluções interrompidas; nestas, devem-se manter os limites inferior e superior ao comparar qualidade.
+
+A etapa 4 acrescentará repetições de desempenho, comparação consolidada e discussão de incertezas. O gráfico heurística versus exato e a análise de métodos não são antecipados pela etapa 2.
+
+O [enunciado](docs/enunciado.pdf) e a [proposta](docs/proposta-tema.pdf) registram os requisitos. Datas previstas: etapa 2 em 30/10; etapa 3 em 17/11; entrega final em 04/12; apresentação em 10/12 e 11/12, no semestre 2026/2.
 
 ## Referência principal
 
-AGRA, A.; SAMUCO, J. M. *Interdiction Models and Heuristics for Graph Propagation*. Networks, 2026. [DOI: 10.1002/net.70047](https://doi.org/10.1002/net.70047). Artigo-base indicado na proposta de tema.
+AGRA, A.; SAMUCO, J. M. Interdiction Models and Heuristics for Graph Propagation. Networks, 2026. [DOI: 10.1002/net.70047](https://doi.org/10.1002/net.70047).

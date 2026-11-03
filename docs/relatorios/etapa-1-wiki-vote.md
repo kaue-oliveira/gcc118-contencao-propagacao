@@ -136,7 +136,7 @@ O modelo compacto IF de Agra e Samuco prevê 3|V| variáveis e |A| + |V| + 1 res
 | 1.000 vértices | 3.000 | 33.208 |
 | Rede completa | 21.345 | 110.805 |
 
-A análise e a geração dos recortes levaram {{tempo_auditoria}} segundo na execução registrada, em Python {{python_auditoria}}. O processamento dos dados é viável; a resolução do modelo de programação inteira ainda precisa ser avaliada. Os testes começarão pelos recortes menores, registrando tempo, gap e status.
+A análise e a geração dos recortes levaram 0,37 segundo na execução registrada, em Python 3.12.3. O processamento dos dados é viável; a resolução do modelo de programação inteira ainda precisa ser avaliada. Os testes começarão pelos recortes menores, registrando tempo, gap e status.
 
 A Wiki-Vote não está entre as seis redes reais da seção 7.1 do artigo-base. Isso permite estudar outra rede, sem afirmar que seu uso seja inédito na literatura.
 

@@ -17,3 +17,6 @@ venv/
 *~
 .DS_Store
 Thumbs.db
+
+# Reexecuções e pilotos locais; a entrega auditada fica em etapa-2/.
+resultados/locais/

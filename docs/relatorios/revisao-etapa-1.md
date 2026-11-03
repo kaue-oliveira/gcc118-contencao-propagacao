@@ -53,7 +53,7 @@ A entrada `scripts/analisar.py` também foi executada em uma cópia temporária,
 - O arquivo descreve votação dirigida. Usá-lo para propagação por caminhos é uma hipótese experimental explicitada, adequada à proposta da modalidade B; não permite concluir eficácia real contra epidemias ou malware.
 - A referência numérica é a rede completa, não apenas a maior componente fraca. A divergência entre a descrição e a tabela do SNAP foi tratada corretamente.
 - Arcos recíprocos são relações dirigidas diferentes, não duplicatas. A orientação foi preservada.
-- A figura usa a fração de todos os vértices com grau maior ou igual a x. Os graus zero ficam fora do eixo horizontal logarítmico, mas permanecem no denominador. A regeneração agora está disponível.
+- A figura usa a fração de todos os vértices com grau maior ou igual a x. Os graus zero ficam fora do eixo horizontal logarítmico, mas permanecem no denominador. A figura e a tabela de graus estão disponíveis no repositório.
 - A origem 5931 não tem saída. O cenário unitário é um controle trivial; o relatório corretamente evita tratá-lo como evidência de desempenho de métodos.
 - A seleção BFS garante conexão fraca e recortes crescentes, mas concentra vizinhos do vértice de maior saída. O viés e a densidade elevada estão explicitados.
 - A conta de 3|V| variáveis e |A| + |V| + 1 restrições principais corresponde à formulação compacta apresentada na proposta, com fixações de S em limites de variáveis. Os quatro tamanhos previstos estão aritmeticamente corretos. Só a etapa 2 medirá o modelo efetivamente construído e a dificuldade de resolução.
@@ -66,12 +66,12 @@ A entrada `scripts/analisar.py` também foi executada em uma cópia temporária,
 | PDF, seção 8 | `python3 analisar.py` não funciona na raiz atual | Substituído por `python3 scripts/analisar.py` |
 | PDF, seção 8 | JSON e tabelas descritos em caminhos anteriores à organização do repositório | Caminhos reais de resultados, dados processados e instâncias documentados |
 | PDF, legenda da Figura 1 | Fonte indicada como `resultados/graus.csv` | Corrigida para `resultados/etapa-1/graus.csv` |
-| PDF, seção 7 | 0,64 s e Python 3.12.14 não correspondem ao JSON incluído | Tempo e Python agora são preenchidos a partir do JSON: 0,37 s e 3.12.3 nesta versão |
-| PDF, seção 8 | Menção a gerar_relatorio.py e DOCX ausentes | Adicionados o gerador real em scripts/, a fonte Markdown e dependências opcionais; removida a instrução de DOCX |
+| PDF, seção 7 | 0,64 s e Python 3.12.14 não correspondem ao JSON incluído | Tempo e Python conferidos com o JSON: 0,37 s e 3.12.3 nesta versão |
+| PDF, seção 8 | Referências a ferramentas de edição ausentes | Documentação simplificada, mantendo o PDF, o texto Markdown e a figura |
 | PDF | Link do GitHub não informado | Link clicável na primeira página e no README |
 | PDF, referências | Referências a atividade/comentário do Campus Virtual sem cópia no repositório | Mantidas apenas as referências ao SNAP e ao artigo-base; metaheurística mantida como planejamento |
 
-A data original de coleta e de elaboração foi preservada, com identificação explícita da revisão em 12/10/2026. Os dados brutos, as tabelas e os algoritmos de análise não precisaram de alteração. A figura foi regenerada a partir dos graus conferidos; o PDF foi regenerado e revisado visualmente em todas as páginas.
+A data original de coleta e de elaboração foi preservada, com identificação explícita da revisão em 12/10/2026. Os dados brutos, as tabelas e os algoritmos de análise não precisaram de alteração. A figura foi conferida com os graus, e todas as páginas do PDF foram revisadas visualmente.
 
 Na edição solicitada pelo autor, a seção técnica de reprodução foi retirada do relatório. Comandos, caminhos e hashes continuam documentados no repositório. A escrita foi simplificada, mantendo os resultados e as limitações da análise. O enunciado e a proposta foram removidos das referências do PDF, e a conclusão passou a ser a seção 8.
 

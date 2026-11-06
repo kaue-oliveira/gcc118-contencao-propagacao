@@ -136,3 +136,7 @@ AGRA, A.; SAMUCO, J. M. Interdiction Models and Heuristics for Graph Propagation
 SNAP. [Wikipedia vote network](https://snap.stanford.edu/data/wiki-Vote.html). Base auditada na etapa 1.
 
 GUROBI. [Model attributes](https://docs.gurobi.com/projects/optimizer/en/current/reference/attributes/model.html). Definições das métricas consultadas no solver.
+
+## Repositório
+
+[https://github.com/kaue-oliveira/gcc118-contencao-propagacao](https://github.com/kaue-oliveira/gcc118-contencao-propagacao)
